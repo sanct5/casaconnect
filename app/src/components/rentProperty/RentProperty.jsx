@@ -1,10 +1,10 @@
 import React from 'react'
 import { Container } from '@mui/material'
 
-export const Loguin = () => {
+export const RentProperty = () => {
     return (
         <Container disableGutters maxWidth="xl">
-            Loguin
+            RentProperty
         </Container>
     )
 }

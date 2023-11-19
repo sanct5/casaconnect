@@ -6,7 +6,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 export const SearchBar = () => {
     return (
-        <Container
+        <Container disableGutters
             maxWidth
             sx={{
                 display: 'flex',
@@ -15,6 +15,7 @@ export const SearchBar = () => {
                 alignItems: 'center',
                 padding: 2,
                 borderBottom: '1px solid #B1B1B1',
+                marginBottom: 5,
             }}
         >
             <img
@@ -49,7 +50,7 @@ export const SearchBar = () => {
                 />
                 <IconButton href='/home' color='primary' size='medium'><SearchOutlinedIcon fontSize="inherit" /></IconButton>
             </Box>
-            <Button href='/loguin' variant='text'>Renta aquí tu inmueble</Button>
+            <Button href='/rent' variant='text'>Renta aquí tu inmueble</Button>
             <Box
                 sx={{
                     border: '1px solid #B1B1B1',
@@ -57,7 +58,7 @@ export const SearchBar = () => {
                     padding: 1,
                 }}
             >
-                <IconButton href='register'><BsPersonCircle fontSize="25px" /></IconButton>
+                <IconButton><BsPersonCircle fontSize="25px" /></IconButton>
             </Box>
         </Container>
     )
