@@ -1,5 +1,17 @@
 const mongoose = require('mongoose');
 
+const amenitiesList = [
+  'Wi-fi',
+  'Televisión',
+  'Piscina',
+  'Agua caliente',
+  'Plancha',
+  'Cámara exterior',
+  'Pet friendly',
+  'Comida incluida',
+  'Garaje',
+];
+
 const propertySchema = new mongoose.Schema({
   name: { 
     type: String, 
@@ -18,9 +30,9 @@ const propertySchema = new mongoose.Schema({
     required: true 
   },
   amenities: { 
-    type: [String], 
+    type: [{ type: String, enum: amenitiesList }], 
     default: [] 
-  }, // Lista de servicios disponibles
+  },
   location: {
     type: {
       type: String,
