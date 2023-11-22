@@ -21,6 +21,8 @@ app.use( cors(headers) )
 
 app.listen( express.static('public'))
 
+app.use( express.json() );
+
 // Rutas
 app.use('/api/user', requiere('./routes/userRoutes'));
 app.use('/api/property', require('./routes/propertyRoutes'));
