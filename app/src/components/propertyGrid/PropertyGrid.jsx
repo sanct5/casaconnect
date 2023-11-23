@@ -18,7 +18,7 @@ export const PropertyGrid = () => {
                     },
                 };
 
-                const response = await fetch('http://localhost:4000/api/property/', requestOptions);
+                const response = await fetch('https://banckend-casaconnect-production.up.railway.app/api/property/', requestOptions);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);

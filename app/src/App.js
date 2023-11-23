@@ -7,6 +7,7 @@ import { RentProperty } from "./components/rentProperty/RentProperty";
 import { Property } from "./components/property/Property";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './app.css';
 
 function App() {
   const location = useLocation();

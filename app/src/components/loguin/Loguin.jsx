@@ -33,12 +33,14 @@ export const Loguin = () => {
     }
 
     const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
+      redirect: 'follow', 
+      follow: 'manual', 
     };
 
-    fetch("http://localhost:4000/api/auth/", requestOptions)
+    fetch("https://banckend-casaconnect-production.up.railway.app/api/auth/", requestOptions)
     .then(response => {
       if (!response.ok) {
         if (response.status === 400) {

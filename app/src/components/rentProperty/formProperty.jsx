@@ -79,6 +79,8 @@ const FormProperty = () => {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'x-token': localStorage.getItem("token") },
+            redirect: 'follow', 
+            follow: 'manual', 
             body: JSON.stringify({
                 ...formData,
                 amenities: selectedAmenities,
@@ -93,7 +95,7 @@ const FormProperty = () => {
             }),
         };
 
-        fetch('http://localhost:4000/api/property/', requestOptions)
+        fetch('https://banckend-casaconnect-production.up.railway.app/api/property/', requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);

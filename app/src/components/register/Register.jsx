@@ -39,10 +39,12 @@ export const Register = () => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(formData),
+      redirect: 'follow', 
+      follow: 'manual', 
     };
   
-    fetch('http://localhost:4000/api/auth/new', requestOptions)
+    fetch('https://banckend-casaconnect-production.up.railway.app/api/auth/new', requestOptions)
       .then(response => {
         if (!response.ok) {
           if (response.status === 400) {

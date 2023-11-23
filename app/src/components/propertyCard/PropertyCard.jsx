@@ -12,7 +12,7 @@ export default function PropertyCard({ property }) {
         try {
             const token = localStorage.getItem('token');
 
-            const response = await fetch(`http://localhost:4000/api/property/${id}`, {
+            const response = await fetch(`https://banckend-casaconnect-production.up.railway.app/api/property/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
