@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Logo from "../../assets/Logo.svg";
@@ -22,12 +22,11 @@ export const Register = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para enviar los datos del formulario
     console.log("Formulario enviado:", formData);
   };
 
   return (
-    <Container disableGutters maxWidth="xl">
+    <div>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
@@ -48,6 +47,7 @@ export const Register = () => {
               marginTop: "10%",
             }}
             src={Logo}
+            alt="Logo de casaconnect"
           />
         </Grid>
         <Grid item xs={12} sm={8} md={7} component={Paper} elevation={6} square>
@@ -90,7 +90,7 @@ export const Register = () => {
                     </Typography>
                   </div>
                     <TextField
-                      variant="outlined" // Puedes cambiar a "filled" o "standard" según tus necesidades
+                      variant="outlined"
                       margin="normal"
                       required
                       fullWidth
@@ -142,7 +142,7 @@ export const Register = () => {
                         fontSize: 24,
                       }}
                     >
-                      Confirmar Contraseña*
+                      Confirmar contraseña*
                     </Typography>
                   </div>
                   <TextField
@@ -199,7 +199,7 @@ export const Register = () => {
                         fontSize: 18,
                       }}
                     >
-                      {"Inicio de Sesion"}
+                      {"Iniciar sesión"}
                     </Link>
                   </Grid>
                 </Grid>
@@ -208,6 +208,6 @@ export const Register = () => {
           </div>
         </Grid>
       </Grid>
-    </Container>
+    </div>
   );
 };

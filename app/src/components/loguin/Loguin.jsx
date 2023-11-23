@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Logo from "../../assets/Logo.svg";
@@ -22,12 +22,11 @@ export const Loguin = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para enviar los datos del formulario
     console.log("Formulario enviado:", formData);
   };
 
   return (
-    <Container disableGutters maxWidth="xl">
+    <div disableGutters maxWidth="xl">
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
@@ -48,6 +47,7 @@ export const Loguin = () => {
               marginTop: "10%",
             }}
             src={Logo}
+            alt="Logo de casaconnect"
           />
         </Grid>
         <Grid item xs={12} sm={8} md={7} component={Paper} elevation={6} square>
@@ -90,7 +90,7 @@ export const Loguin = () => {
                     </Typography>
                   </div>
                   <TextField
-                    variant="outlined" // Puedes cambiar a "filled" o "standard" según tus necesidades
+                    variant="outlined"
                     margin="normal"
                     required
                     fullWidth
@@ -102,7 +102,6 @@ export const Loguin = () => {
                 </div>
                 <div></div>
                 <div style={{ margin: "10px" }}></div>
-
                 <div>
                   <div>
                     <Typography
@@ -144,17 +143,17 @@ export const Loguin = () => {
                       ¿Olvidaste tu
                     </Link>
                     <Link
-                        href="#"
-                        variant="body2"
-                        sx={{
-                          color: "#3F618C",
-                          fontFamily: "Poppins",
-                          fontWeight: "bold",
-                          fontSize: 18
-                        }}
-                      >
-                         Contraseña?
-                      </Link>
+                      href="#"
+                      variant="body2"
+                      sx={{
+                        color: "#3F618C",
+                        fontFamily: "Poppins",
+                        fontWeight: "bold",
+                        fontSize: 18
+                      }}
+                    >
+                      contraseña?
+                    </Link>
                   </Grid>
                 </Grid>
                 <Grid style={{ marginTop: "7%" }}></Grid>
@@ -172,7 +171,7 @@ export const Loguin = () => {
                     fontSize: 24,
                   }}
                 >
-                  Iniciar Sesión
+                  Iniciar sesión
                 </Button>
                 <Grid container>
                   <Grid item xs>
@@ -210,6 +209,6 @@ export const Loguin = () => {
           </div>
         </Grid>
       </Grid>
-    </Container>
+    </div>
   );
 };
