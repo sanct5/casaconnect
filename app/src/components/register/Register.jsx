@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
@@ -55,7 +55,7 @@ export const Register = () => {
             style={{
               margin: "center",
               alignItems: "center",
-              marginTop: "5%",
+              marginTop: "10%",
               justifyContent: "center",
             }}
           >
@@ -90,7 +90,7 @@ export const Register = () => {
                     </Typography>
                   </div>
                     <TextField
-                      variant="outlined" // Puedes cambiar a "filled" o "standard" según tus necesidades
+                      variant="outlined"
                       margin="normal"
                       required
                       fullWidth
@@ -218,7 +218,7 @@ export const Register = () => {
                   </Grid>
                   <Grid item>
                     <Link
-                      href="../loguin/"
+                      href="../login/"
                       variant="body2"
                       sx={{
                         color: "#406595",

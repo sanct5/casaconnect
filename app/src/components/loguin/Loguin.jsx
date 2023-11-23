@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
@@ -9,6 +9,7 @@ import { CssBaseline } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Logo from "../../assets/Logo.svg";
+import { SearchBar } from "../searchBar/SearchBar";
 
 export const Loguin = () => {
   const [formData, setFormData] = useState({
