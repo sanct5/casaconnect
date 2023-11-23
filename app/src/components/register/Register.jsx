@@ -19,12 +19,26 @@ export const Register = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  };
+   };     
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Formulario enviado:", formData);
-  };
-
+   
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    };
+   
+    fetch('http://localhost:4000/api/auth/new', requestOptions)
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+   };
+   
   return (
     <div>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -95,9 +109,10 @@ export const Register = () => {
                       required
                       fullWidth
                       id="usuario"
-                      name="usuario"
+                      name="name"
                       autoComplete="usuario"
                       autoFocus
+                      onChange={handleChange}
                     />
                 </div>
                 <div></div>
@@ -126,6 +141,7 @@ export const Register = () => {
                       name="email"
                       autoComplete="email"
                       autoFocus
+                      onChange={handleChange}
                     />
                 </div>
                 <div></div>
@@ -154,6 +170,7 @@ export const Register = () => {
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    onChange={handleChange}
                   />
                 </div>
                 <div></div>
@@ -181,6 +198,7 @@ export const Register = () => {
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    onChange={handleChange}
                   />
                 </div>
                 <Grid style={{ marginTop: "5%" }}></Grid>
@@ -197,7 +215,9 @@ export const Register = () => {
                     fontWeight: "bold",
                     fontSize: 24,
                   }}
+                  onClick={handleSubmit}
                 >
+
                   Registrarse
                 </Button>
                 <Grid container>

@@ -9,9 +9,10 @@ import { CssBaseline } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Logo from "../../assets/Logo.svg";
-
+import { useNavigate } from "react-router-dom";
 
 export const Loguin = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -23,11 +24,28 @@ export const Loguin = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Formulario enviado:", formData);
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    };
+
+    fetch("http://localhost:4000/api/auth/", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        const token = data.token;
+        localStorage.setItem("token", JSON.stringify(token));
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
-    <div disableGutters maxWidth="xl">
+    <div>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
@@ -99,6 +117,7 @@ export const Loguin = () => {
                     name="email"
                     autoComplete="email"
                     autoFocus
+                    onChange={handleChange}
                   />
                 </div>
                 <div></div>
@@ -126,6 +145,7 @@ export const Loguin = () => {
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    onChange={handleChange}
                   />
                 </div>
                 <Grid container>
@@ -150,7 +170,7 @@ export const Loguin = () => {
                         color: "#3F618C",
                         fontFamily: "Poppins",
                         fontWeight: "bold",
-                        fontSize: 18
+                        fontSize: 18,
                       }}
                     >
                       contraseña?
@@ -171,6 +191,7 @@ export const Loguin = () => {
                     fontWeight: "bold",
                     fontSize: 24,
                   }}
+                  onClick={handleSubmit}
                 >
                   Iniciar sesión
                 </Button>
