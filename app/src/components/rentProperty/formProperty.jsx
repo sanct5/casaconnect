@@ -19,6 +19,15 @@ const amenitiesList = [
 ];
 
 const FormProperty = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        nightlyRate: '',
+        description: '',
+        environmentDescription: '',
+        amenities: [],
+        location: { latitude: '', longitude: '' },
+        photos: [],
+    });
     const [selectedAmenities, setSelectedAmenities] = useState([]);
     const [location, setLocation] = useState({ latitude: '', longitude: '' });
     const [isMenuOpen, setMenuOpen] = useState(false);
@@ -33,6 +42,7 @@ const FormProperty = () => {
         }
     };
 
+
     const handleMenuToggle = () => {
         setMenuOpen(!isMenuOpen);
     };
@@ -42,13 +52,40 @@ const FormProperty = () => {
         setSelectedImage(file);
     };
 
-    const handleSave = () => {
-        console.log('Form data:', {
-            selectedAmenities,
-            location,
-            selectedImage,
-        });
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
     };
+
+    const handleSave = () => {
+        console.log(localStorage.getItem("token"))
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-token': localStorage.getItem("token") },
+            body: JSON.stringify({
+                ...formData,
+                amenities: selectedAmenities,
+                location: {
+                    type: 'Point',
+                    coordinates: [
+                        parseFloat(formData.location.longitude),
+                        parseFloat(formData.location.latitude),
+                    ],
+                },
+                photos: selectedImage ? [selectedImage.name] : [],
+            }),
+        };
+
+        fetch('http://localhost:4000/api/property/', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    };
+    
 
     return (
         <Container
@@ -65,7 +102,7 @@ const FormProperty = () => {
                         <Typography variant="h5" style={{ marginRight: '10px', whiteSpace: 'nowrap', flexBasis: '45%' }}>
                             Nombre del inmueble:
                         </Typography>
-                        <TextField label="Nombre del inmueble" fullWidth style={{ backgroundColor: '#9BABBF' }} />
+                        <TextField name="name" label="Nombre del inmueble" fullWidth style={{ backgroundColor: '#9BABBF' }} onChange={handleChange} />
                     </div>
                 </Grid>
                 <Grid item xs={12}>
@@ -73,7 +110,7 @@ const FormProperty = () => {
                         <Typography variant="h5" style={{ marginRight: '10px', whiteSpace: 'nowrap', flexBasis: '45%' }}>
                             Valor por noche:
                         </Typography>
-                        <TextField label="Valor por noche" fullWidth style={{ backgroundColor: '#9BABBF' }} />
+                        <TextField name="nightlyRate" label="Valor por noche" fullWidth style={{ backgroundColor: '#9BABBF' }} onChange={handleChange} />
                     </div>
                 </Grid>
                 <Grid item xs={12}>
@@ -81,7 +118,7 @@ const FormProperty = () => {
                         <Typography variant="h5" style={{ marginRight: '10px', whiteSpace: 'nowrap', flexBasis: '45%' }}>
                             Descripción del inmueble:
                         </Typography>
-                        <TextField label="Descripción del inmueble" fullWidth style={{ backgroundColor: '#9BABBF' }} />
+                        <TextField name="description" label="Descripción del inmueble" fullWidth style={{ backgroundColor: '#9BABBF' }} onChange={handleChange} />
                     </div>
                 </Grid>
                 <Grid item xs={12}>
@@ -89,7 +126,7 @@ const FormProperty = () => {
                         <Typography variant="h5" style={{ marginRight: '10px', whiteSpace: 'nowrap', flexBasis: '45%' }}>
                             Descripción del entorno:
                         </Typography>
-                        <TextField label="Descripción del entorno" multiline rows={6} fullWidth style={{ backgroundColor: '#9BABBF' }} />
+                        <TextField name="environmentDescription" label="Descripción del entorno" multiline rows={6} fullWidth style={{ backgroundColor: '#9BABBF' }} onChange={handleChange} />
                     </div>
                 </Grid>
                 <Grid item xs={12}>
@@ -160,6 +197,7 @@ const FormProperty = () => {
         </Container>
     );
 };
+
 
 
 
