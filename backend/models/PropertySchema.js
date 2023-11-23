@@ -1,21 +1,21 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const propertySchema = new mongoose.Schema({
-  name: { 
-    type: String, 
-    required: true 
+const propertySchema = Schema({
+  name: {
+    type: String,
+    required: true
   },
-  nightlyRate: { 
-    type: Number, 
-    required: true 
+  nightlyRate: {
+    type: Number,
+    required: true
   },
-  description: { 
-    type: String, 
-    required: true 
+  description: {
+    type: String,
+    required: true
   },
-  environmentDescription: { 
-    type: String, 
-    required: true 
+  environmentDescription: {
+    type: String,
+    required: true
   },
   amenities: {
     Wifi: {
@@ -67,26 +67,28 @@ const propertySchema = new mongoose.Schema({
       required: false,
     },
   },
-  photos: { 
-    type: [String], 
+  photos: {
+    type: [String],
     default: [],
-    required: false 
+    required: false
   },
-},{
-  toJSON:{
-      virtuals: true
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'Usuario'
+  },
+}, {
+  toJSON: {
+    virtuals: true
   },
   toObject: {
-      virtuals: true
+    virtuals: true
   }
 });
 
-PropertySchema.method('toJSON', function(){
-    const{ __v, _id, ...object} =this.toObject();
-    object.id = _id;
-    return object;
+propertySchema.method('toJSON', function () {
+  const { __v, _id, ...object } = this.toObject();
+  object.id = _id;
+  return object;
 })
 
-const Property = mongoose.model('Property', propertySchema);
-
-module.exports = Property;
+module.exports = model("Property", propertySchema);

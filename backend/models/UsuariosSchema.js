@@ -23,8 +23,8 @@ const UsuarioScheme = Schema({
     }
 });
 
-UsuarioScheme.virtual('tareas', {
-    ref: 'Task',
+UsuarioScheme.virtual('propiedades', {
+    ref: 'Property',
     localField: '_id',
     foreignField: 'user',
     justOne: false,

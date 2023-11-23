@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { validarJWT } = require('../middlewares/validar-token');
-const { listProperties, createProperty, updateProperty, deleteProperty } = require('../controllers/property'); // Make sure to adjust the path
+const { listProperties, createProperty, updateProperty, deleteProperty } = require('../controllers/propertyController');
 
 router.use(validarJWT);
 
