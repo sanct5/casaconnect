@@ -58,7 +58,7 @@ export const Register = () => {
       .then(data => {
         console.log('Success:', data);
         toast.success('Usuario creado con éxito, puedes iniciar sesión');
-        navigate("/login");
+        navigate("/");
       })
       .catch((error) => {
         console.error('Error:', error);
