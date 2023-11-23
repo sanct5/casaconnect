@@ -5,26 +5,30 @@ import {
 } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import PhotoIcon from '@mui/icons-material/Photo';
+import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 const amenitiesList = [
-    'Wi-fi',
-    'Televisión',
+    'Wifi',
+    'Television',
     'Piscina',
     'Agua caliente',
     'Plancha',
-    'Cámara exterior',
-    'Pet friendly',
+    'Camara exterior',
+    'PetFriendly',
     'Comida incluida',
     'Garaje',
 ];
 
 const FormProperty = () => {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         name: '',
         nightlyRate: '',
         description: '',
         environmentDescription: '',
-        amenities: [],
+        amenities: {},
         location: { latitude: '', longitude: '' },
         photos: [],
     });
@@ -57,8 +61,14 @@ const FormProperty = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSave = () => {
-        console.log(localStorage.getItem("token"))
+    const handleSave = (e) => {
+        e.preventDefault();
+
+        if (formData.name === "" || formData.nightlyRate === "" || formData.description === "" || formData.environmentDescription === "") {
+            toast.error('Nombre, precio, descripción y descripción del entorno son campos obligatorios');
+            return;
+        }
+
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'x-token': localStorage.getItem("token") },
@@ -80,12 +90,14 @@ const FormProperty = () => {
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
+                toast.success('Propiedad agregada exitosamente');
+                navigate("/home");
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
     };
-    
+
 
     return (
         <Container

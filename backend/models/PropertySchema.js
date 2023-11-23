@@ -18,42 +18,22 @@ const propertySchema = Schema({
     required: true
   },
   amenities: {
-    Wifi: {
-      type: Boolean,
-      default: false,
-    },
-    Television: {
-      type: Boolean,
-      default: false,
-    },
-    Piscina: {
-      type: Boolean,
-      default: false,
-    },
-    AguaCaliente: {
-      type: Boolean,
-      default: false,
-    },
-    Plancha: {
-      type: Boolean,
-      default: false,
-    },
-    CamaraExterior: {
-      type: Boolean,
-      default: false,
-    },
-    PetFriendly: {
-      type: Boolean,
-      default: false,
-    },
-    ComidaIncluida: {
-      type: Boolean,
-      default: false,
-    },
-    Garaje: {
-      type: Boolean,
-      default: false,
-    },
+    type: [{
+      type: String,
+      enum: [
+        'Wifi',
+        'Television',
+        'Piscina',
+        'Agua caliente',
+        'Plancha',
+        'Camara exterior',
+        'PetFriendly',
+        'Comida incluida',
+        'Garaje',
+      ],
+      default: [],
+    }],
+    required: false,
   },
   location: {
     type: {

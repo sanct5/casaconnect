@@ -50,7 +50,7 @@ export const SearchBar = () => {
                 />
                 <IconButton href='/home' color='primary' size='medium'><SearchOutlinedIcon fontSize="inherit" /></IconButton>
             </Box>
-            <Button href='/rent' variant='text'>Renta aquí tu inmueble</Button>
+            <Button href='/rent' variant='text'>Renta aquí tu inmueble </Button>
             <Box
                 sx={{
                     border: '1px solid #B1B1B1',
@@ -59,6 +59,7 @@ export const SearchBar = () => {
                 }}
             >
                 <IconButton href='/login'><BsPersonCircle fontSize="25px" /></IconButton>
+                {`${localStorage.getItem("usuario")}`}
             </Box>
         </Container>
     )
