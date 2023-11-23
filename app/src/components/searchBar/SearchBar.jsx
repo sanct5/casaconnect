@@ -58,7 +58,7 @@ export const SearchBar = () => {
                     padding: 1,
                 }}
             >
-                <IconButton><BsPersonCircle fontSize="25px" /></IconButton>
+                <IconButton href='/login'><BsPersonCircle fontSize="25px" /></IconButton>
             </Box>
         </Container>
     )
