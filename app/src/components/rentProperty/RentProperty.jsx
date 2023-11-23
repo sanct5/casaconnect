@@ -17,10 +17,10 @@ export const RentProperty = () => {
             </div>
             <div>
                 <Container>
-                <Typography variant="h1" component="div" fontWeight={700} fontSize={35} style={{ marginBottom: '25px', whiteSpace: 'nowrap' }}>
-                    Publicar inmueble
-                </Typography>
-                < FormProperty />
+                    <Typography variant="h1" component="div" fontWeight={700} fontSize={35} style={{ marginBottom: '25px', whiteSpace: 'nowrap' }}>
+                        Publicar inmueble
+                    </Typography>
+                    < FormProperty />
                 </Container>
             </div>
         </Container>

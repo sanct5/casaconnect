@@ -62,7 +62,7 @@ const FormProperty = () => {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                        <Typography variant="h5" style={{ marginRight: '10px', whiteSpace: 'nowrap', flexBasis: '45%'}}>
+                        <Typography variant="h5" style={{ marginRight: '10px', whiteSpace: 'nowrap', flexBasis: '45%' }}>
                             Nombre del inmueble:
                         </Typography>
                         <TextField label="Nombre del inmueble" fullWidth style={{ backgroundColor: '#9BABBF' }} />
@@ -126,7 +126,7 @@ const FormProperty = () => {
                             Ubicación del inmueble:
                         </Typography>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                            <TextField label="Latitud" fullWidth value={location.latitude} onChange={(e) => setLocation({ ...location, latitude: e.target.value })} style={{ backgroundColor: '#9BABBF', marginRight: '10px'}} />
+                            <TextField label="Latitud" fullWidth value={location.latitude} onChange={(e) => setLocation({ ...location, latitude: e.target.value })} style={{ backgroundColor: '#9BABBF', marginRight: '10px' }} />
                             <TextField label="Longitud" fullWidth value={location.longitude} onChange={(e) => setLocation({ ...location, longitude: e.target.value })} style={{ backgroundColor: '#9BABBF' }} />
                         </div>
                     </div>
@@ -150,7 +150,7 @@ const FormProperty = () => {
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', float: 'right'}}>
+                    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', float: 'right' }}>
                         <Button variant="contained" color="primary" onClick={handleSave} style={{ float: 'right' }}>
                             Guardar
                         </Button>

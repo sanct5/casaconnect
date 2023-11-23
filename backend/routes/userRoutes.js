@@ -24,5 +24,3 @@ router.get('/renew', validarJWT, revalidarToken)
 router.get('/', listarUsuarios)
 
 module.exports = router;
-
-module.exports = router;

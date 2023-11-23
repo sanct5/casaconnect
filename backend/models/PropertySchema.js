@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const propertySchema = new mongoose.Schema({
   name: { 
     type: String, 
@@ -19,39 +18,39 @@ const propertySchema = new mongoose.Schema({
     required: true 
   },
   amenities: {
-    wifi: {
+    Wifi: {
       type: Boolean,
       default: false,
     },
-    television: {
+    Television: {
       type: Boolean,
       default: false,
     },
-    piscina: {
+    Piscina: {
       type: Boolean,
       default: false,
     },
-    aguaCaliente: {
+    AguaCaliente: {
       type: Boolean,
       default: false,
     },
-    plancha: {
+    Plancha: {
       type: Boolean,
       default: false,
     },
-    camaraExterior: {
+    CamaraExterior: {
       type: Boolean,
       default: false,
     },
-    petFriendly: {
+    PetFriendly: {
       type: Boolean,
       default: false,
     },
-    comidaIncluida: {
+    ComidaIncluida: {
       type: Boolean,
       default: false,
     },
-    garaje: {
+    Garaje: {
       type: Boolean,
       default: false,
     },
@@ -73,7 +72,20 @@ const propertySchema = new mongoose.Schema({
     default: [],
     required: false 
   },
+},{
+  toJSON:{
+      virtuals: true
+  },
+  toObject: {
+      virtuals: true
+  }
 });
+
+PropertySchema.method('toJSON', function(){
+    const{ __v, _id, ...object} =this.toObject();
+    object.id = _id;
+    return object;
+})
 
 const Property = mongoose.model('Property', propertySchema);
 
