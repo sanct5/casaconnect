@@ -25,8 +25,14 @@ export const theme = createTheme({
         background: {
             default: '#f2f2f2',
         },
+        
     },
     typography: {
         fontFamily: '"Poppins","Roboto", "Helvetica", "Arial", "sans-serif"',
     },
+    MuiTextField: {
+        root: {
+          borderRadius: 10, // Ajusta este valor según tu preferencia
+        },
+      },
 });
