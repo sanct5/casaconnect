@@ -9,7 +9,7 @@ import { CssBaseline } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Logo from "../../assets/Logo.svg";
-import { SearchBar } from "../searchBar/SearchBar";
+
 
 export const Loguin = () => {
   const [formData, setFormData] = useState({
