@@ -55,7 +55,7 @@ export const Register = () => {
             style={{
               margin: "center",
               alignItems: "center",
-              marginTop: "10%",
+              marginTop: "5%",
               justifyContent: "center",
             }}
           >
@@ -86,6 +86,34 @@ export const Register = () => {
                         fontSize: 24,
                       }}
                     >
+                      Nombre de Usuario*
+                    </Typography>
+                  </div>
+                    <TextField
+                      variant="outlined" // Puedes cambiar a "filled" o "standard" según tus necesidades
+                      margin="normal"
+                      required
+                      fullWidth
+                      id="usuario"
+                      name="usuario"
+                      autoComplete="usuario"
+                      autoFocus
+                    />
+                </div>
+                <div></div>
+                <div style={{ margin: "5%" }}></div>
+                <div>
+                  <div>
+                    <Typography
+                      variant="h5"
+                      gutterBottom
+                      style={{
+                        color: "#3F618C",
+                        fontFamily: "Poppins",
+                        fontWeight: "bold",
+                        fontSize: 24,
+                      }}
+                    >
                       Correo*
                     </Typography>
                   </div>
@@ -98,11 +126,10 @@ export const Register = () => {
                       name="email"
                       autoComplete="email"
                       autoFocus
-                      
                     />
                 </div>
                 <div></div>
-                <div style={{ margin: "10px" }}></div>
+                <div style={{ margin: "5%" }}></div>
 
                 <div>
                   <div>
@@ -129,7 +156,8 @@ export const Register = () => {
                     autoComplete="current-password"
                   />
                 </div>
-                <div style={{ margin: "10px" }}></div>
+                <div></div>
+                <div style={{ margin: "5%" }}></div>
                 <div>
                   <div>
                     <Typography
