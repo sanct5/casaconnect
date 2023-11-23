@@ -4,6 +4,8 @@ import { PropertyGrid } from "../propertyGrid/PropertyGrid";
 import Typography from "@mui/material/Typography";
 
 export const Home = () => {
+  console.log(localStorage.getItem("token"))
+  console.log(localStorage.getItem("usuario"))
   return (
     <Container disableGutters maxWidth="xl">
       <PropertyGrid />

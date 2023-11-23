@@ -6,6 +6,8 @@ import { SearchBar } from "./components/searchBar/SearchBar";
 import { RentProperty } from "./components/rentProperty/RentProperty";
 import { Property } from "./components/property/Property";
 import property from "./components/property/propertyExample";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const location = useLocation();
@@ -13,6 +15,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer />
       <Routes>
         <Route path="/login" element={<Loguin />} />
         <Route path="/register" element={<Register />} />

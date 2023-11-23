@@ -9,36 +9,63 @@ import { CssBaseline } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Logo from "../../assets/Logo.svg";
+import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-   };     
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+  
+    if (formData.name === "" || formData.email === "" || formData.password === "") {
+      toast.error('Por favor llena todos los campos');
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      toast.error('La contraseña debe tener al menos 6 caracteres');
+      return;
+    }
+  
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
     };
-   
+  
     fetch('http://localhost:4000/api/auth/new', requestOptions)
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          if (response.status === 400) {
+            return response.json().then(errorData => {
+              throw new Error(errorData.message || 'El correo ya está ocupado por otro usuario o está mal escrito, por favor verifica');
+            });
+          } else {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+        }
+        return response.json();
+      })
       .then(data => {
         console.log('Success:', data);
+        toast.success('Usuario creado con éxito, puedes iniciar sesión');
+        navigate("/login");
       })
       .catch((error) => {
         console.error('Error:', error);
+        toast.error(error.message || 'La solicitud no fue exitosa, verifica los campos e inténtelo más tarde');
       });
-   };
-   
+  };
+  
   return (
     <div>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -103,17 +130,17 @@ export const Register = () => {
                       Nombre de Usuario*
                     </Typography>
                   </div>
-                    <TextField
-                      variant="outlined"
-                      margin="normal"
-                      required
-                      fullWidth
-                      id="usuario"
-                      name="name"
-                      autoComplete="usuario"
-                      autoFocus
-                      onChange={handleChange}
-                    />
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="usuario"
+                    name="name"
+                    autoComplete="usuario"
+                    autoFocus
+                    onChange={handleChange}
+                  />
                 </div>
                 <div></div>
                 <div style={{ margin: "5%" }}></div>
@@ -132,17 +159,17 @@ export const Register = () => {
                       Correo*
                     </Typography>
                   </div>
-                    <TextField
-                      variant="outlined"
-                      margin="normal"
-                      required
-                      fullWidth
-                      id="email"
-                      name="email"
-                      autoComplete="email"
-                      autoFocus
-                      onChange={handleChange}
-                    />
+                  <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                    onChange={handleChange}
+                  />
                 </div>
                 <div></div>
                 <div style={{ margin: "5%" }}></div>
@@ -175,32 +202,6 @@ export const Register = () => {
                 </div>
                 <div></div>
                 <div style={{ margin: "5%" }}></div>
-                <div>
-                  <div>
-                    <Typography
-                      variant="h5"
-                      gutterBottom
-                      style={{
-                        color: "#3F618C",
-                        fontFamily: "Poppins",
-                        fontWeight: "bold",
-                        fontSize: 24,
-                      }}
-                    >
-                      Confirmar contraseña*
-                    </Typography>
-                  </div>
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    onChange={handleChange}
-                  />
-                </div>
                 <Grid style={{ marginTop: "5%" }}></Grid>
                 <Button
                   type="submit"
