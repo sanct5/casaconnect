@@ -5,6 +5,7 @@ import { Register } from "./components/register/Register";
 import { SearchBar } from "./components/searchBar/SearchBar";
 import { RentProperty } from "./components/rentProperty/RentProperty";
 import { Property } from "./components/property/Property";
+import property from "./components/property/propertyExample"
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
       <Routes>
         <Route path="/rent" element={<RentProperty />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/property" element={<Property />} />
+        <Route path="/property" element={<Property property={property}/>} />
       </Routes>
     </>
   );

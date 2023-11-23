@@ -10,7 +10,7 @@ export default function PropertyCard({ property }) {
 
     return (
         <Card sx={{ maxWidth: 322, boxShadow: 0, backgroundColor: '#f2f2f2' }}>
-            <CardActionArea>
+            <CardActionArea href='/property'>
                 <CardMedia
                     component="img"
                     height="auto"
@@ -18,16 +18,16 @@ export default function PropertyCard({ property }) {
                     alt="Casa en la llanura"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" fontWeight={600}>
+                    <Typography gutterBottom variant="h5" component="div" fontWeight="bold">
                         {name}
                     </Typography>
-                    <Typography gutterBottom variant="body2" color="text.secondary" fontWeight={400}>
+                    <Typography gutterBottom variant="body2" color="text.secondary" fontWeight="normal">
                         {description}
                     </Typography>
                     <Typography variant="h5" component="div">
-                        <span style={{ color: 'black', fontWeight:600}}>{`$${price}`}</span>
+                        <span style={{ color: 'black', fontWeight: "bold" }}>{`$${price} COP`}</span>
                         {' '}
-                        <span style={{ color: '#747474', fontWeight: 300 }}>Noche</span>
+                        <span style={{ color: '#747474', fontWeight: "normal" }}>Noche</span>
                     </Typography>
                 </CardContent>
             </CardActionArea>
