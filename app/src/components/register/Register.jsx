@@ -175,7 +175,7 @@ export const Register = () => {
                 <Grid container>
                   <Grid item xs>
                     <Link
-                      href="#"
+                      href=""
                       variant="body2"
                       sx={{
                         color: "#7A7A7A",
@@ -190,7 +190,7 @@ export const Register = () => {
                   </Grid>
                   <Grid item>
                     <Link
-                      href="#"
+                      href="../loguin/"
                       variant="body2"
                       sx={{
                         color: "#406595",

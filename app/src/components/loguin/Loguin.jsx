@@ -192,7 +192,7 @@ export const Loguin = () => {
                   </Grid>
                   <Grid item>
                     <Link
-                      href="#"
+                      href="../register/"
                       variant="body2"
                       sx={{
                         color: "#406595",
