@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container, IconButton, Typography, Grid, Button } from '@mui/material'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import propertyExample from '../../assets/propertyExample.png';
@@ -14,25 +13,70 @@ import WifiIcon from '@mui/icons-material/Wifi';
 import TvIcon from '@mui/icons-material/Tv';
 import PoolIcon from '@mui/icons-material/Pool';
 
-export const Property = ({ property }) => {
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-    const { name, description, environment, price, amenities, img } = property;
+export const Property = () => {
+    const { id } = useParams();
+    const [property, setProperty] = useState(null);
+
+    useEffect(() => {
+        const fetchProperty = async () => {
+            try {
+                const token = localStorage.getItem('token');
+
+                const response = await fetch(`http://localhost:4000/api/property/${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-token': token,
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (data.ok) {
+                    setProperty(data.property);
+                } else {
+                    console.error('Error obteniendo la propiedad:', data.message);
+                }
+            } catch (error) {
+                console.error('Error en la solicitud:', error);
+            }
+        };
+
+        fetchProperty();
+    }, [id]);
+
+    if (!property) {
+        return <div>Cargando...</div>;
+    }
+
+    const {
+        amenities,
+        description,
+        environmentDescription,
+        name,
+        nightlyRate,
+        img,
+        user,
+    } = property;
 
     const amenityIcons = {
         wifi: <WifiIcon />,
         television: <TvIcon />,
         piscina: <PoolIcon />,
-        aguaCaliente: <WaterDropOutlinedIcon />,
+        aguacaliente: <WaterDropOutlinedIcon />,
         plancha: <IronOutlinedIcon />,
-        camaraExterior: <CameraOutdoorOutlinedIcon />,
-        petFriendly: <PetsIcon />,
-        comidaIncluida: <FastfoodIcon />,
+        camaraexterior: <CameraOutdoorOutlinedIcon />,
+        petfriendly: <PetsIcon />,
+        comidaincluida: <FastfoodIcon />,
         garaje: <GarageOutlinedIcon />,
     };
-
-    const activeAmenities = Object.entries(amenities)
-        .filter(([amenity, isActive]) => isActive)
-        .slice(0, 9);
 
     return (
         <Container disableGutters maxWidth="xl" style={{ display: "flex", flexDirection: "row" }}>
@@ -59,14 +103,14 @@ export const Property = ({ property }) => {
                         {description}
                     </Typography>
                     <Typography gutterBottom variant="p" color="black" fontWeight="bold">
-                        <span style={{ color: 'black', fontWeight: "bold" }}>{`$${price} COP`}</span>
+                        <span style={{ color: 'black', fontWeight: "bold" }}>{`$${nightlyRate} COP`}</span>
                         {' '}
                         <span style={{ color: '#747474', fontWeight: "normal" }}>Noche</span>
                         <Button variant="contained" color="primary" style={{ marginLeft: "15px" }}>Hacer reserva</Button>
                     </Typography>
                 </div>
                 <Typography gutterBottom variant="p" color="black" style={{ borderBottom: '1px solid #B1B1B1', padding: 10 }}>
-                    {environment}
+                    {environmentDescription}
                 </Typography>
                 <div style={{ borderBottom: '1px solid #B1B1B1', padding: "10px" }}>
                     <div style={{ display: 'flex', flexDirection: "column" }}>
@@ -77,13 +121,17 @@ export const Property = ({ property }) => {
                         </div>
                         <div >
                             <div style={{ display: 'flex', flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap", padding: 10 }}>
-                                {activeAmenities.map(([amenity, isActive]) => (
-                                    <div key={amenity} style={{ display: "flex", flexDirection: "row", gap: 10, width: '30%', marginBottom: "1%" }}>
-                                        {amenityIcons[amenity]}
-                                        <Typography variant="p" color="black">{amenity}</Typography>
-                                    </div>
-                                ))}
+                                {amenities.map((amenity) => {
+                                    const amenityKey = amenity.toLowerCase().replace(/\s+/g, ''); // Convertir a minúsculas y quitar espacios
+                                    return (
+                                        <div key={amenityKey} style={{ display: "flex", flexDirection: "row", gap: 10, width: '30%', marginBottom: "1%" }}>
+                                            {amenityIcons[amenityKey] || <span>No icon available for {amenity}</span>}
+                                            <Typography variant="p" color="black">{amenity}</Typography>
+                                        </div>
+                                    );
+                                })}
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -98,7 +146,7 @@ export const Property = ({ property }) => {
                                 Datos de contacto
                             </Typography>
                             <Typography gutterBottom variant="p" color="black">
-                                Alojado por usuario
+                                Alojado por {user.name}
                             </Typography>
                             <Button variant="contained" color="primary">Hacer reserva</Button>
                         </div>

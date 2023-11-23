@@ -69,6 +69,13 @@ const FormProperty = () => {
             return;
         }
 
+        const nightlyRateAsNumber = Number(formData.nightlyRate);
+
+        if (isNaN(nightlyRateAsNumber)) {
+            toast.error('El precio debe ser un número');
+            return;
+        }
+
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'x-token': localStorage.getItem("token") },

@@ -1,5 +1,5 @@
 const express = require('express');
-const Property = require('../models/PropertySchema'); 
+const Property = require('../models/PropertySchema');
 
 const createProperty = async (req, res = express.request) => {
     const property = new Property(req.body);
@@ -102,9 +102,36 @@ const deleteProperty = async (req, res = express.request) => {
     }
 };
 
+const getOneProperty = async (req, res = express.request) => {
+    const { id } = req.params;
+
+    try {
+        const property = await Property.findById(id).populate('user', 'name');
+
+        if (!property) {
+            return res.status(404).json({
+                ok: false,
+                message: 'Property not found',
+            });
+        }
+
+        res.status(200).json({
+            ok: true,
+            property,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            message: 'Internal Error',
+        });
+    }
+};
+
 module.exports = {
     listProperties,
     createProperty,
     updateProperty,
     deleteProperty,
+    getOneProperty,
 };
